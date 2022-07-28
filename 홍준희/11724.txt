@@ -1,0 +1,37 @@
+백준 11724
+https://growingarchive.tistory.com/143
+
+리스트 : append 인자 1개만 
+요소 여러개
+Cf) insert로 원하는 위치에 삽입가능
+
+런타임 에러 (UnboundLocalError)
+
+출처: <https://www.acmicpc.net/status?from_mine=1&problem_id=11724&user_id=junheehong> 
+
+
+
+
+UnboundLocalError: local variable 'cnt' referenced before assignment
+
+
+😾 bfs를 이용한 풀이에서 이러한 오류가 떴다.
+
+😾 찾아보니 이는 전역변수를 지역범위에서 사용했더니 생기는 오류라고 한다.
+따라서 전역 변수를 지역 범위 (local scope)에서 사용하고 싶으면 
+지역 영역에서 global 표현을 사용해야 한다!
+
+😾 따라서 BFS 풀이에서 cnt를 사용할때
+>> global cnt  
+>> cnt += 1 
+와 같이 global 표현을 추가해주었다.
+
+
+출처: <https://velog.io/@eunseokim/%EB%B0%B1%EC%A4%80-2606%EB%B2%88-%EB%B0%94%EC%9D%B4%EB%9F%AC%EC%8A%A4> 
+
+
+Cnt+=1 의 위치때문에 오류 생긴다
+Bfs 함수내에 있으니 매번 카운트해서 6나오니 위치 바꾸기
+실행 for 내로 
+
+--노드, 간선 값과 인덱스 혼동 주의하기
