@@ -1,0 +1,37 @@
+백준 11729
+
+RecursionError: maximum recursion depth exceeded in comparison
+라고 오류를 내뱉어줬다. 다행?이었다. 쉽게 오류를 찾을 수 있었으니..
+그래서 검색해본 결과, 몰랐던 사실을 알게 되었다. 파이썬에서는 재귀의 한도가 시스템의 안정을 위해 정해져있다는 것이다. 하지만, 나는 이미 이 문제를 dfs 재귀로 풀었고, 해결해야 했다.
+
+출처: <https://velog.io/@csexpert/python-%EC%B5%9C%EB%8C%80-%EC%9E%AC%EA%B7%80%ED%95%9C%EB%8F%84-%EA%B9%8A%EC%9D%B4-%EC%97%90%EB%9F%ACRecursionError-maximum-recursion-depth-exceeded-in-comparison> 
+
+
+hanoi(m-1 , a, b-a)
+    hanoi(1 , a, b)
+    hanoi(m-1, b-a, b)
+
+
+7
+1 1
+1 2
+1 2
+1 3
+2 1
+2 3
+1 3
+
+
+1 1
+1 2
+1 2
+이런 문제 발생
+
+원형 큐처럼 (rear+1)%capacity로 해결가능하지 않을까?
+
+2번기둥 3번기둥 토글하게??
+
+1에서 2기둥, 2에서 3기둥갈ㄸ 문제생김
+
+6은  1 2 3 의합
+6에서 2개 수 빼면 나온다
