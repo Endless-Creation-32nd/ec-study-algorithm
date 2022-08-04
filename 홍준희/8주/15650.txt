@@ -1,0 +1,16 @@
+defpermu(k):
+ifk==m:
+print(''.join(map(str,arr)))
+return
+
+
+foriinrange(k,n):
+ifvisit[i]==0:
+
+
+arr[k]=(i+1)
+visit[i]=1
+permu(k+1)
+visit[i]=0
+
+permu(0)

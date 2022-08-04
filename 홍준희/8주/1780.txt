@@ -1,0 +1,97 @@
+백준 1780
+
+재귀로 하면 될거 같은데
+해당 구역이 같은 숫자로 구성된거 확인하는 기능 구현????
+
+나 생각못함
+
+첫번째 칸 값 저장 받아서 
+같은지 돌면서 확인하기
+다르면 재귀 호출
+
+같으면 저장된 값기준으로
+카운트하기
+
+
+분할정복???
+1 1 1 
+1 1 1
+1 1 1 하니 9나오는데 뭉쳐서 나오게 하려면?
+
+1더해주는 위치 조정
+
+---
+
+런타임 에러 (TypeError)
+
+출처: <https://www.acmicpc.net/status?from_mine=1&problem_id=1780&user_id=junheehong> 
+이문제 해결위해
+m/3이 아니라 m//3으로 고침
+
+--하니까 
+list index out of range
+3을 3으로 나눈 몫 1이나
+1+2 하면 인덱스 넘어간다
+
+기준점 필요하니
+recursive((m//3)+k, (m//3)+l, (m//3))
+여기에 
+X, y 필요하다
+
+
+현재 문제점
+
+3x3에서 재귀타고 다음으로 넘어갔을때 카운트를 이상하게한다.
+
+
+
+
+
+
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+board = []
+
+for i in range(n):
+    board.append(list(map(int, input().split())))
+
+mione = 0
+zero = 0
+one = 0
+
+
+#재귀로 n일때하고 안되면 n/3
+
+def recursive(x, y, m):
+    if m <= 0:
+        return
+    global mione, zero, one
+
+    c = board[x][y]
+
+
+    for i in range(m):
+        for j in range(m):
+            if c != board[x+i][y+j]:
+                for k in range(3):
+                    for l in range(3):
+                        recursive(x+(m//3)*k, y+(m//3)*l, (m//3))
+
+                    return
+
+    if board[x][y] == 1:
+        one += 1
+
+    elif board[x][y] == 0:
+        zero += 1
+
+    elif board[x][y] == -1:
+        mione += 1
+
+recursive(0, 0, n)
+print(mione)
+print(zero)
+print(one)
