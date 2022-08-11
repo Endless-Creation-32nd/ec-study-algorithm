@@ -1,0 +1,84 @@
+#sort함수
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+arr = []
+
+for i in range(n):
+    arr.append(int(input()))
+    
+   
+
+arr.sort()
+print(' '.join(map(str, arr)))
+
+
+#mergesort
+
+import sys
+sys.setrecursionlimit(10**7)
+input = sys.stdin.readline
+
+n = int(input())
+
+arr = []
+
+for i in range(n):
+    arr.append(int(input()))
+
+
+temp = [0] * n
+
+def mergesort(st, ed):
+    if st == ed:
+        return
+
+    mid = (st+ed) / 2
+
+    mergesort(st, mid)
+    mergesort(mid, ed)
+    merge(st, ed)
+
+
+def merge(st, ed):
+    mid = (st+ed) / 2
+    a = st
+    b = mid
+    global arr
+
+    for i in range(st, ed):
+        if a == mid:
+            temp[i] = arr[b]
+            b += 1
+
+        elif b == ed:
+            temp[i] = arr[a]
+            a += 1
+
+
+        else:
+            if arr[a] <= arr[b]:
+                temp[i] = arr[a]
+                a += 1
+
+            else:
+                temp[i] = arr[b]
+                b += 1
+
+
+
+    for j in range(st, ed):
+        arr[i] = temp[i]
+
+   
+
+mergesort(0, n)
+
+
+
+
+print(' '.join(map(str, arr)))
+
+# 재귀의 늪에서 해어나오지 못하고 있다.
