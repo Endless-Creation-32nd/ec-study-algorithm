@@ -1,0 +1,18 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+arr = []
+
+for i in range(n):
+    arr.append(int(input()))
+    
+arr.sort()
+
+max = 0
+
+for k in range(n):
+    if max < arr[n-k-1]* (k+1):
+        max = arr[n-k-1] * (k+1)
+        
+print(max)

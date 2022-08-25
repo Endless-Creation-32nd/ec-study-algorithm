@@ -1,0 +1,23 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+board = []
+
+for i in range(n):
+    board.append(int(input()))
+
+m = max(board)
+
+arr = [0] * m
+
+arr[0] = 1
+arr[1] = 2
+arr[2] = 4
+
+if m >= 4:
+    for j in range(3, m):
+        arr[j] = arr[j - 1] + arr[j - 2] + arr[j - 3]
+
+for i in range(n):
+    print(arr[(board[i] - 1)])

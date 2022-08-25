@@ -1,0 +1,48 @@
+import sys
+input = sys.stdin.readline
+
+
+n, k = map(int, input().split())
+
+arr = []
+for i in range(n):
+    arr.append(int(input()))
+
+cnt = 0
+
+for i in range(n-1, -1, -1):
+    cnt += (k // arr[i])
+    k %= arr[i]
+
+
+
+print(cnt)
+
+
+
+
+
+range ()와 역순으로 목록을 인쇄 하시겠습니까?
+
+출처: <http://daplus.net/python-range-%EC%99%80-%EC%97%AD%EC%88%9C%EC%9C%BC%EB%A1%9C-%EB%AA%A9%EB%A1%9D%EC%9D%84-%EC%9D%B8%EC%87%84-%ED%95%98%EC%8B%9C%EA%B2%A0%EC%8A%B5%EB%8B%88%EA%B9%8C/> 
+
+
+
+사용 reversed()기능 :
+reversed(range(10))
+훨씬 더 의미가 있습니다.
+최신 정보:
+btk가 지적한 것처럼 목록이되고 싶다면 :
+list(reversed(range(10)))
+
+출처: <http://daplus.net/python-range-%EC%99%80-%EC%97%AD%EC%88%9C%EC%9C%BC%EB%A1%9C-%EB%AA%A9%EB%A1%9D%EC%9D%84-%EC%9D%B8%EC%87%84-%ED%95%98%EC%8B%9C%EA%B2%A0%EC%8A%B5%EB%8B%88%EA%B9%8C/> 
+
+
+
+범위’내장 기능을 사용하십시오. 서명은입니다 range(start, stop, step). 이렇게하면을 (를) 시작 하고을 (를) 제외하고 끝에 도달 start하면 끝나는 시퀀스를 생성합니다 .stopstop
+>>> range(9,-1,-1)
+    [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+>>> range(-2, 6, 2)
+    [-2, 0, 2, 4]
+
+출처: <http://daplus.net/python-range-%EC%99%80-%EC%97%AD%EC%88%9C%EC%9C%BC%EB%A1%9C-%EB%AA%A9%EB%A1%9D%EC%9D%84-%EC%9D%B8%EC%87%84-%ED%95%98%EC%8B%9C%EA%B2%A0%EC%8A%B5%EB%8B%88%EA%B9%8C/>
