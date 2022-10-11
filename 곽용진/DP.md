@@ -8,6 +8,8 @@
 * 3. 구현 방법 
 >
 * 4. 여렵게 느껴지는 이유
+>
+* 5. 11053번 코드 
 #
 
 ## 1. 다이나믹 프로그래밍(DP)란 무엇인가
@@ -73,3 +75,27 @@ pibo(6)
 2. 점화식을 알 수 있는지 직접 계산하며 확인해야 함
 3. 구현이 어렵지는 않지만, 문제 해결 방법을 알아내는 것이 어려움(수학..같다)
 
+#
+## 5. 11053번 코드
+``` python
+import sys
+input = sys.stdin.readline
+
+n = int(input().rstrip())
+a = list(map(int, input().split()))
+d = [0 for _ in range(n)]
+d[0] = 1
+
+for i in range(1, n):
+    s = []
+    for j in range(i):
+        if a[i] > a[j]:
+            s.append(d[j])
+    
+    if not s:
+        d[i] = 1
+    else:
+        d[i] = max(s) + 1
+
+print(max(d))
+```
