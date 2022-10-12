@@ -1,0 +1,36 @@
+#답은 정확히 나오는데 왜 오답이 나오는지 모르겠다
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+arr = list(map(int, input().split()))
+dis = [0]*n
+dis[0] = 1
+
+
+
+for i in range(n):
+    for j in range(i):
+        if arr[j] == arr[i]:
+            dis[i] = dis[j]
+
+        ''' 버전1
+            if arr[i] > arr[j] and (dis[i] <= dis[j]):
+            # 해당 값이 크기만 한거 더하면 문제 발생하니
+            # and조건으로 dis값에 따라 분류 필요
+
+            dis[i] = dis[j]+1
+            '''
+
+    #버전2
+    if i >= 1:
+        ind = arr.index(max(arr[0:i]))
+
+        if arr[i] > arr[ind]:
+            dis[i] = dis[ind] + 1
+
+
+print(dis)
+print(max(dis))
