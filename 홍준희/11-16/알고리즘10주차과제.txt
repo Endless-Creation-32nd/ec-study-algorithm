@@ -1,0 +1,39 @@
+import sys
+input = sys.stdin.readline
+
+#dp버전
+
+# 물건의 수와 배낭의 최대용량 입력
+n, c = map(int, input().split())
+# 각각 물건들의 가치와 무게를 저장할 배열
+arr = [0] * (2*n)
+# value = [[0]*(c+1)]*(n+ 1) 이렇게 선언하니 위아래 행 모두 동일하게 바뀌어서 오답나온다
+
+# 각각 해당하는 물건의 수와 배낭 용량에 맞는 가치를 저장할 배열
+value = [[0 for j in range(c+1)]for i in range(n+1)]
+# 이렇게 하니 각각 행이 따로 변화
+
+#각 물건들의 가치와 무게 저장
+for i in range(n):
+    arr[2*i], arr[2*i + 1] = map(int, input().split())
+
+#물건의 수를 1부터 1씩 n까지 증가시킨다
+for i in range(1, n+1):
+    #배낭의 용량을 1부터 1씩 c까지 증가시킨다.
+    for j in range(1, c+1):
+        
+        #해당 물건 담을 수 없는 경우 이전 물건까지 담을 수 있는 최대가치 저장
+        if(j < arr[2*(i-1) + 1]):
+            value[i][j] = value[i-1][j]
+
+        #담을 수 있는 경우
+        else:
+            #담을 수 있지만 담지 않는게 가치가 더 큰경우
+            if value[i-1][j] > (value[i-1][j-arr[2*(i-1) + 1]] + arr[2*(i-1)]):
+                value[i][j] = value[i-1][j]
+            #담을 수 있고 담는게 가치가 더 큰경우
+            else:
+                value[i][j] = (value[i-1][j-arr[2*(i-1) + 1]] + arr[2*(i-1)])
+
+#결과 출력
+print(value[n][c])

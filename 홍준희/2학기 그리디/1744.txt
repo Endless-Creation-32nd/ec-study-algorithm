@@ -1,0 +1,41 @@
+import sys
+input = sys.stdin.readline
+
+
+n = int(input())
+# 값저장할 배열
+arr = []
+sum = 0
+for i in range(n):
+    arr.append(int(input()))
+
+arr.sort()
+#큰거부터 선택해서 묶어서 곱하기 욕심부리기
+
+while arr:
+    a, b = 0, 0
+    if arr[-1] > 0:
+        a= arr[-1]
+        arr.pop(a)
+
+    if arr[-1] > 0:
+        b= arr[-1]
+        arr.pop(b)
+        #pop 안돼서 remove로 변경
+
+    if a != 0 and b != 0:
+        if a * b > a + b:
+            sum += (a * b)
+        else:
+            sum += (a + b)
+    if a != 0 and b ==0:
+        sum += a
+
+if(len(arr) == 1):
+    sum += arr[0]
+
+print(sum)
+
+# 0과 음수의 경우 둘이 있으면 서로 곱해서 영으로 만드는게 좋다
+
+

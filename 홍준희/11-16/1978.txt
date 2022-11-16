@@ -1,0 +1,27 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+arr = [] * n
+cnt = 0
+
+arr = map(int, input().split())
+
+
+def prime(n):
+    if n==1:
+        return 0
+    i = 2
+    while i*i <= n:
+        if n % i == 0:
+            return 0
+        i += 1
+
+    return 1
+
+
+for i in arr:
+    cnt += prime(i)
+
+print(cnt)
+
