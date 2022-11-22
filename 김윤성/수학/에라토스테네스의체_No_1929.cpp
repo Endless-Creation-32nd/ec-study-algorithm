@@ -19,6 +19,7 @@ vector<int> sieve(int m, int n)
 
     for(int i=2; i<=n; i++)
     {
+        if(i < m) continue;
         if(state[i]) primes.push_back(i); // 소수인 경우 primes에 추가
     }
 
@@ -27,6 +28,10 @@ vector<int> sieve(int m, int n)
 
 int main()
 {
+    ios_base :: sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
     int M, N;
     cin >> M >> N;
 
@@ -34,11 +39,7 @@ int main()
     
     for(int i = 0; i< vec.size(); i++)
     {
-        if(vec[i] >= M)
-        {
-            cout << vec[i] <<endl;
-        }
-        
+        cout << vec[i] <<endl;
     }
 
     return 0;
