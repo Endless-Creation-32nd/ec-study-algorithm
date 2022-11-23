@@ -1,0 +1,28 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+arr = list(map(int, input().split()))
+
+
+left = 0
+leftx = left
+right = n-1
+rightx = right
+min = abs(arr[left]+arr[right])
+while left < right:
+
+    if min >= abs(arr[left]+arr[right]):
+        min = abs(arr[left]+arr[right])
+        rightx = right
+        leftx = left
+    if (arr[left] + arr[right]) == 0:
+        break
+    elif (arr[left]+arr[right]) > 0:
+        right -= 1
+    elif (arr[left] + arr[right]) < 0:
+        left += 1
+
+print(arr[leftx], arr[rightx])
+
+#왜 계속 틀리는거지?
